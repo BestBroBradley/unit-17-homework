@@ -44,6 +44,6 @@ const WorkoutSchema = new Schema({
     }
 })
 
-const Workout = mongood.model("Workout", WorkoutSchema)
+const Workout = mongoose.model("Workout", WorkoutSchema)
 
 module.exports = Workout
