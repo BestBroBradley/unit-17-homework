@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { us
 app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
     .then(data => {
-        res.json(data)
+        res.render(data)
     })
     .catch(err => {
         res.json(err)
@@ -30,21 +30,25 @@ app.get("/api/workouts", (req, res) => {
 })
 
 // // PUT /api/workouts
-app.put("api/workouts", ({body}, res) => {
-    db.Workout.create(body)
-    .then(data => {
-        res.json(data)
-    })
-    .catch(err => {
-        res.json(err)
-    })
-})
+// app.put("api/workouts/:id", ({body}, res) => {
+//     console.log(body)
+//     db.Workout.create(body)
+//     .then(data => {
+//         console.log(data)
+//         res.status(200).end()
+//     })
+//     .catch(err => {
+//         res.json(err)
+//     })
+// })
 
 // // POST /api/workouts
 app.post("api/workouts", ({body}, res) => {
+    console.log(body)
     db.Workout.create(body)
     .then(data => {
-        res.json(data)
+        console.log(data)
+        res.status(200).end()
     })
     .catch(err => {
         res.json(err)
