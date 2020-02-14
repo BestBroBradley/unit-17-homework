@@ -4,7 +4,7 @@ const db = require("../models")
 router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
     .then(data => {
-        res.render(data)
+        res.json(data)
     })
     .catch(err => {
         res.json(err)
@@ -12,28 +12,27 @@ router.get("/api/workouts", (req, res) => {
 })
 
 // // PUT /api/workouts
-router.put("api/workouts/:id", ({body}, res) => {
+// router.put("api/workouts/:id", ({body}, res) => {
 
-    //findByIdandUpdate
+//     //findByIdandUpdate
 
-    console.log(body)
-    db.Workout(body)
-    .then(data => {
-        console.log(data)
-        res.status(200).end()
-    })
-    .catch(err => {
-        res.json(err)
-    })
-})
+//     console.log(body)
+//     db.Workout(body)
+//     .then(data => {
+//         res.status(200).end()
+//     })
+//     .catch(err => {
+//         res.json(err)
+//     })
+// })
 
 // // POST /api/workouts
 router.post("api/workouts", ({body}, res) => {
-    console.log(body)
+    console.log(`Body: ${body}`)
     db.Workout.create(body)
     .then(data => {
         console.log(data)
-        res.status(200).end()
+        res.json(data)
     })
     .catch(err => {
         res.json(err)
@@ -41,5 +40,14 @@ router.post("api/workouts", ({body}, res) => {
 })
 
 // GET /api/workouts/range
+router.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+    .then(data => {
+        res.json(data)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
 
 module.exports = router
