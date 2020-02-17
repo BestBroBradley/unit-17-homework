@@ -12,25 +12,22 @@ router.get("/api/workouts", (req, res) => {
 })
 
 // // PUT /api/workouts
-// router.put("api/workouts/:id", ({body}, res) => {
-
-//     //findByIdandUpdate
-
-//     console.log(body)
-//     db.Workout(body)
-//     .then(data => {
-//         res.status(200).end()
-//     })
-//     .catch(err => {
-//         res.json(err)
-//     })
-// })
+router.put("api/workouts/:id", ({body}, res) => {
+    db.Workout.findByIdAndUpdate({__id: req.params.id}, { $push: {exercises: body}})
+        .then(data => {
+            res.json(data)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+    })
 
 // // POST /api/workouts
 router.post("api/workouts", (req, res) => {
-    db.Workout.create({})
+    const workout = new db.Workout()
+    workout.getDuration()
+    db.Workout.create(workout)
     .then(data => {
-        console.log(data)
         res.json(data)
     })
     .catch(err => {

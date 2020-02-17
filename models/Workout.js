@@ -9,7 +9,7 @@ const WorkoutSchema = new Schema({
     },
     duration: {
         type: Number,
-        required: true
+        required: false
     },
     exercises: [{
         type: {
